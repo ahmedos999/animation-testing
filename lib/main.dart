@@ -23,7 +23,7 @@ class Animetest extends StatefulWidget {
 class _AnimetestState extends State<Animetest> {
   double _size = 50;
   double _sliderValue = 0.0;
-  double _endValue = 1;
+  double _endValue = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +33,12 @@ class _AnimetestState extends State<Animetest> {
           Center(
             child: TweenAnimationBuilder(
                 tween: Tween<double>(begin: 0, end: _endValue),
-                duration: const Duration(seconds: 1),
+                duration: const Duration(milliseconds: 500),
                 builder: (_, double angle, __) {
                   return Transform.rotate(
                     angle: angle,
-                    child: Container(
+                    child: AnimatedContainer(
+                      duration: const Duration(seconds: 1),
                       width: _size,
                       height: _size,
                       color: Colors.red,
@@ -46,7 +47,7 @@ class _AnimetestState extends State<Animetest> {
                 }),
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
           Slider.adaptive(
               value: _sliderValue,
